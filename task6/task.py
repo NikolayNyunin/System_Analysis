@@ -59,7 +59,7 @@ def t(ranking_list: list) -> float:
 
 
 def task(*json_strings: str) -> float:
-    """Вычисление коэффициента согласованности `W`."""
+    """Вычисление коэффициента конкордации Кендалла (W)."""
 
     # получение числа ранжировок
     m = len(json_strings)
@@ -102,7 +102,7 @@ def task(*json_strings: str) -> float:
     # (также работает для случая с кластерами эквивалентности)
     d_max = (m ** 2 * (n ** 3 - n) - m * sum([t(rankings[s].ranking_list) for s in range(m)])) / (12 * (n - 1))
 
-    # вычисление коэффициента согласованности (W)
+    # вычисление коэффициента конкордации (W)
     w = d / d_max
 
     return round(w, 2)
