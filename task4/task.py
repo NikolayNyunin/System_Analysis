@@ -24,27 +24,27 @@ def task() -> list:
     probabilities = counts / 36
 
     # ВЫЧИСЛЕНИЕ H(AB)
-    entropy_AB = -np.sum(probabilities * np.log2(probabilities, where=np.abs(probabilities) > 0.0001))
-    # print('H(AB) = {}'.format(entropy_AB))  # H(AB)
+    entropy_ab = -np.sum(probabilities * np.log2(probabilities, where=np.abs(probabilities) > 0.0001))
+    # print('H(AB) = {}'.format(entropy_ab))  # H(AB)
 
     # ВЫЧИСЛЕНИЕ H(A)
     # матрица вероятностей только для события A
-    probabilities_A = np.sum(probabilities, axis=1)
-    entropy_A = -np.sum(probabilities_A * np.log2(probabilities_A, where=np.abs(probabilities_A) > 0.0001))
-    # print('H(A) = {}'.format(entropy_A))  # H(A)
+    probabilities_a = np.sum(probabilities, axis=1)
+    entropy_a = -np.sum(probabilities_a * np.log2(probabilities_a, where=np.abs(probabilities_a) > 0.0001))
+    # print('H(A) = {}'.format(entropy_a))  # H(A)
 
     # ВЫЧИСЛЕНИЕ H(B)
     # матрица вероятностей только для события B
-    probabilities_B = np.sum(probabilities, axis=0)
-    entropy_B = -np.sum(probabilities_B * np.log2(probabilities_B, where=np.abs(probabilities_B) > 0.0001))
-    # print('H(B) = {}'.format(entropy_B))  # H(B)
+    probabilities_b = np.sum(probabilities, axis=0)
+    entropy_b = -np.sum(probabilities_b * np.log2(probabilities_b, where=np.abs(probabilities_b) > 0.0001))
+    # print('H(B) = {}'.format(entropy_b))  # H(B)
 
     # ВЫЧИСЛЕНИЕ H_A(B)
-    entropy_A_B = entropy_AB - entropy_A  # H(AB) - H(A)
-    # print('H_A(B) = {}'.format(entropy_A_B))  # H_A(B)
+    entropy_a_b = entropy_ab - entropy_a  # H(AB) - H(A)
+    # print('H_A(B) = {}'.format(entropy_a_b))  # H_A(B)
 
     # ВЫЧИСЛЕНИЕ I(A,B)
-    information_AB = entropy_B - entropy_A_B  # H(B) - H_A(B)
-    # print('I(A,B) = {}'.format(information_AB))  # I(A,B)
+    information_ab = entropy_b - entropy_a_b  # H(B) - H_A(B)
+    # print('I(A,B) = {}'.format(information_ab))  # I(A,B)
 
-    return [round(el, 2) for el in [entropy_AB, entropy_A, entropy_B, entropy_A_B, information_AB]]
+    return [round(el, 2) for el in [entropy_ab, entropy_a, entropy_b, entropy_a_b, information_ab]]
